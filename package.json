@@ -1,0 +1,10 @@
+{
+  "name": "acos-jsvee",
+  "version": "0.1.0",
+  "description": "JSVEE",
+  "main": "index.js",
+  "scripts": {
+  },
+  "author": "Teemu Sirkiä",
+  "license": "MIT"
+}
