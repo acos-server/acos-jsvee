@@ -41,14 +41,18 @@ JSVEE.initialize = function(req, params, handlers, cb) {
   });
 };
 
-JSVEE.handleEvent = function(event, payload, req, res, protocolPayload) {
+JSVEE.handleEvent = function(event, payload, req, res, protocolPayload, responseObj, cb) {
   if (event == 'log') {
     var dir = JSVEE.config.logDirectory + '/jsvee/' + req.params.contentPackage;
     fs.mkdir(dir, 0775, function(err) {
       var name = payload.animationId.replace(/\.|\/|\\|~/g, "-") + '.log';
       var data = new Date().toISOString() + ' ' + payload.logId + ' ' + JSON.stringify(payload.log) + ' ' + JSON.stringify(protocolPayload || {}) + '\n';
-      fs.writeFile(dir + '/' + name, data, { flag: 'a' }, function(err) {});
+      fs.writeFile(dir + '/' + name, data, { flag: 'a' }, function(err) {
+        cb(event, payload, req, res, protocolPayload, responseObj);
+      });
     });
+  } else {
+    cb(event, payload, req, res, protocolPayload, responseObj);
   }
 };
 
