@@ -72,7 +72,7 @@ JSVEE.meta = {
   'description': '',
   'author': 'Teemu Sirkiä',
   'license': 'MIT',
-  'version': '0.0.1',
+  'version': '0.2.1',
   'url': ''
 };
 
